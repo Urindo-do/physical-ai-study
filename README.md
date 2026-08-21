@@ -14,10 +14,12 @@ physical-ai-study/
 ├── docs/                      ← 진행 중인 학습의 참고 자료·체크리스트
 │   └── ros2-r2r-checklist.md      R2R ROS2 강좌 137개 전체 체크리스트 + 2주 일정
 └── study-log/                 ← 날짜별 학습 기록
+    ├── images/                               로그에 쓰이는 스크린샷
     ├── 2026-08-18-linux-basics-practice.md   실습 시나리오 (직접 따라 치는 용)
     ├── 2026-08-18-day1-log.md                1일차: 리눅스 환경 진단 + 기초 명령어
     ├── 2026-08-19-day2-log.md                2일차: Ubuntu 22.04 재설치 + 리눅스 개념 심화
-    └── 2026-08-19-day3-ros2-r2r-plan.md      3일차: ROS2 학습 전략 수립 (R2R 커리큘럼 확정)
+    ├── 2026-08-19-day3-ros2-r2r-plan.md      3일차: ROS2 학습 전략 수립 (R2R 커리큘럼 확정)
+    └── 2026-08-20-day4-ros2-intro-install.md 4일차: R2R 입문 착수 + ROS 2 Humble 설치 ✅
 ```
 
 새 학습 기록은 `study-log/YYYY-MM-DD-주제.md` 형식으로 계속 추가한다.
@@ -49,7 +51,10 @@ physical-ai-study/
 
 ---
 
-## 진행 상황 요약 (2026-08-19 기준)
+## 진행 상황 요약 (2026-08-20 기준)
+
+- ✅ **ROS 2 Humble 설치 완료** (2026-08-20) — talker/listener 통신 및 `rqt_graph`로 검증
+- R2R 입문과정 9/35 진행 중 (전체 9/137)
 
 - 학습 환경: 랩 지급 노트북 (Lenovo Legion 5, hostname `urindodo-Lenovo-Legion-5-15IMH05H`)
 - 설치된 OS: **Ubuntu 22.04.5 LTS (Jammy Jellyfish)** — Day2에서 20.04 → 22.04 재설치 완료 (ROS 2 Humble 공식 지원 버전)
