@@ -23,6 +23,7 @@
 | 날짜 | 완료 | 누적 | 비고 |
 |---|---|---|---|
 | 8/20 | 9개 (89분) | **9 / 137** | 입문 0~2-2. ROS2 Humble 설치·검증 완료 ✅ |
+| 8/21 | 3개 (23분) | **12 / 137** | 입문 2-3~2-5. bashrc→alias 방식 전환, DDS/ROS_DOMAIN_ID 학습 |
 
 ---
 
@@ -44,11 +45,14 @@
 ## 묶음 2 — ROS 2 설치와 환경변수
 
 - [x] 2-2. ROS2 Humble 설치 (14:13) — **설치 완료 + talker/listener + rqt_graph 검증 성공** ✅
-- [ ] 2-3. bashrc 설정 (8:02) — *환경변수 등록(`source /opt/ros/humble/setup.bash`)은 설치 중 이미 수행함*
-- [ ] 2-4. bashrc에서 alias 설정하기 (12:14)
-- [ ] 2-5. ROS_DOMAIN_ID 설정 (2:54) — ⚠️ 랩에서 여러 명이 같은 네트워크를 쓰면 필수
+- [x] 2-3. bashrc 설정 (8:02) — PATH·리다이렉션·`source` 개념 정리 완료
+- [x] 2-4. bashrc에서 alias 설정하기 (12:14) — 자동 실행 → alias 호출 방식으로 전환 (`rebash`, `humble` 등록)
+- [x] 2-5. ROS_DOMAIN_ID 설정 (2:54) — DDS 개념 학습 완료. ⚠️ **alias 실제 등록은 아직 안 됨 (아래 참고)**
 
 **완료 기준**: `ros2 topic list` 정상 실행, 내 노드가 다른 사람 것과 섞이지 않게 격리됨
+
+> ⏳ **이월 작업**: `ros_domain` alias 등록 + `humble` alias에 `ros_domain;` 추가가 아직 남음.
+> 절차는 `study-log/2026-08-21-day5-bashrc-alias-domain-id.md` §5 참고.
 
 ## 묶음 3 — ROS 2 핵심 개념 (노드·서비스·토픽·액션)
 
