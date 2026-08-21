@@ -20,7 +20,9 @@ physical-ai-study/
     ├── 2026-08-18-day1-log.md                1일차: 리눅스 환경 진단 + 기초 명령어
     ├── 2026-08-19-day2-log.md                2일차: Ubuntu 22.04 재설치 + 리눅스 개념 심화
     ├── 2026-08-19-day3-ros2-r2r-plan.md      3일차: ROS2 학습 전략 수립 (R2R 커리큘럼 확정)
-    └── 2026-08-20-day4-ros2-intro-install.md 4일차: R2R 입문 착수 + ROS 2 Humble 설치 ✅
+    ├── 2026-08-20-day4-ros2-intro-install.md 4일차: R2R 입문 착수 + ROS 2 Humble 설치 ✅
+    └── 2026-08-21-day5-bashrc-alias-domain-id.md
+                                              5일차: bashrc·alias 환경 설계, DDS·ROS_DOMAIN_ID
 ```
 
 새 학습 기록은 `study-log/YYYY-MM-DD-주제.md` 형식으로 계속 추가한다.
@@ -52,10 +54,12 @@ physical-ai-study/
 
 ---
 
-## 진행 상황 요약 (2026-08-20 기준)
+## 진행 상황 요약 (2026-08-21 기준)
 
 - ✅ **ROS 2 Humble 설치 완료** (2026-08-20) — talker/listener 통신 및 `rqt_graph`로 검증
-- R2R 입문과정 9/35 진행 중 (전체 9/137)
+- ✅ ROS 2 환경을 `.bashrc` 자동 실행이 아닌 **alias 호출 방식**으로 전환 (환경 충돌 방지)
+- R2R 입문과정 12/35 진행 중 (전체 **12/137**)
+- ⏳ 이월: `ros_domain` alias 등록 + `humble` alias 수정 (다음 접속 시)
 
 - 학습 환경: 랩 지급 노트북 (Lenovo Legion 5, hostname `urindodo-Lenovo-Legion-5-15IMH05H`)
 - 설치된 OS: **Ubuntu 22.04.5 LTS (Jammy Jellyfish)** — Day2에서 20.04 → 22.04 재설치 완료 (ROS 2 Humble 공식 지원 버전)
