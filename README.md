@@ -10,6 +10,7 @@ ROS 2 · 3D 비전 센서(ZED / RealSense) · 로봇 매니퓰레이터 제어(M
 
 ```
 physical-ai-study/
+├── CLAUDE.md                  ← AI 에이전트용 규칙 문서 (구조·배치·커밋 규칙)
 ├── README.md                  ← 지금 이 파일 (전체 개요 + 진행 상황)
 ├── docs/                      ← 진행 중인 학습의 참고 자료·체크리스트
 │   └── ros2-r2r-checklist.md      R2R ROS2 강좌 137개 전체 체크리스트 + 2주 일정
