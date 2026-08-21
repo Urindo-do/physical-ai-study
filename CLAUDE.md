@@ -21,6 +21,8 @@ Ubuntu/ROS 2부터 시작해 3D 비전 센서 · MoveIt · Gazebo로 이어지�
 → 즉 학습은 리눅스에서 하고, **그 기록을 남기는 일은 전부 윈도우에서** 한다.
 → 이 저장소를 리눅스에 clone하지 않는다.
 
+**저장소 위치**: `C:\Users\rlaeo\physical-ai-study` (2026-08-22 clone 완료, Cowork 세션에 폴더 연결됨)
+
 ## 3. 디렉터리 구조와 배치 규칙
 
 ```
