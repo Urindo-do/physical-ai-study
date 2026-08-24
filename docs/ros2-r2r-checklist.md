@@ -24,6 +24,7 @@
 |---|---|---|---|
 | 8/20 | 9개 (89분) | **9 / 137** | 입문 0~2-2. ROS2 Humble 설치·검증 완료 ✅ |
 | 8/21 | 3개 (23분) | **12 / 137** | 입문 2-3~2-5. bashrc→alias 방식 전환, DDS/ROS_DOMAIN_ID 학습 |
+| 8/24 | 0개 | **12 / 137** | R2R 진도 없음. 연구실 과제 4종 수행 → [Day8 로그](../study-log/2026-08-24-day8-ros2-turtlesim-assignment.md) |
 
 ---
 
@@ -55,6 +56,12 @@
 > 절차는 `study-log/2026-08-21-day5-bashrc-alias-domain-id.md` §5 참고.
 
 ## 묶음 3 — ROS 2 핵심 개념 (노드·서비스·토픽·액션)
+
+> 📎 **2026-08-24 연구실 과제로 이 범위를 CLI로 먼저 체험함** — turtlesim 실행,
+> `ros2 topic pub`으로 원형 궤적, `ros2 service call /spawn`으로 거북이 소환까지 직접 해봤다.
+> **다만 강의 영상은 아직 보지 않았으므로 체크는 하지 않는다.** 영상 시청 시
+> "이미 눈으로 본 그 동작이 왜 그렇게 되는지"를 채우는 복습 성격이 된다.
+> 기록: [`study-log/2026-08-24-day8-ros2-turtlesim-assignment.md`](../study-log/2026-08-24-day8-ros2-turtlesim-assignment.md)
 
 - [ ] 3-1. Turtlesim 실행하기 (8:13)
 - [ ] 3-2. 다시 강조하는 setup.bash (2:43)
