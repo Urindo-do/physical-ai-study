@@ -21,8 +21,10 @@ physical-ai-study/
     ├── 2026-08-19-day2-log.md                2일차: Ubuntu 22.04 재설치 + 리눅스 개념 심화
     ├── 2026-08-19-day3-ros2-r2r-plan.md      3일차: ROS2 학습 전략 수립 (R2R 커리큘럼 확정)
     ├── 2026-08-20-day4-ros2-intro-install.md 4일차: R2R 입문 착수 + ROS 2 Humble 설치 ✅
-    └── 2026-08-21-day5-bashrc-alias-domain-id.md
-                                              5일차: bashrc·alias 환경 설계, DDS·ROS_DOMAIN_ID
+    ├── 2026-08-21-day5-bashrc-alias-domain-id.md
+    │                                         5일차: bashrc·alias 환경 설계, DDS·ROS_DOMAIN_ID
+    └── 2026-08-24-day8-ros2-turtlesim-assignment.md
+                                              8일차: 연구실 과제 — turtlesim·토픽·서비스 CLI 실습
 ```
 
 새 학습 기록은 `study-log/YYYY-MM-DD-주제.md` 형식으로 계속 추가한다.
@@ -34,7 +36,7 @@ physical-ai-study/
 | 단계 | 내용 | 상태 |
 |---|---|---|
 | 1 | Linux(Ubuntu 22.04) 환경 구축 + 기본 터미널 명령어 | ✅ 완료 |
-| 2 | ROS 2 설치 및 기초 개념 (R2R 강좌 4단계, 2026-08-20~09-01) | 진행 중 |
+| 2 | ROS 2 설치 및 기초 개념 (R2R 강좌 4단계, 137개 체크리스트) | 진행 중 |
 | 3 | 3D 비전 센서 (ZED 2i / RealSense) | 예정 |
 | 4 | 로봇 매니퓰레이터 제어 (MoveIt) | 예정 |
 | 5 | 시뮬레이션 (Gazebo) | 예정 |
@@ -54,19 +56,24 @@ physical-ai-study/
 
 ---
 
-## 진행 상황 요약 (2026-08-21 기준)
+## 진행 상황 요약 (2026-08-24 기준)
 
 - ✅ **ROS 2 Humble 설치 완료** (2026-08-20) — talker/listener 통신 및 `rqt_graph`로 검증
 - ✅ ROS 2 환경을 `.bashrc` 자동 실행이 아닌 **alias 호출 방식**으로 전환 (환경 충돌 방지)
-- R2R 입문과정 12/35 진행 중 (전체 **12/137**)
+- ✅ **연구실 과제 4종 수행 완료** (2026-08-24) — turtlesim 실행, 토픽 Pub/Sub, `topic pub`으로
+  원형 궤적, `service call /spawn`으로 거북이 소환. 토픽(N:M 방송)과 서비스(1:1 요청-응답)의
+  차이를 실물로 확인 → [Day8 로그](./study-log/2026-08-24-day8-ros2-turtlesim-assignment.md)
+- R2R 입문과정 12/35 진행 중 (전체 **12/137**) — 8/22~8/24는 R2R 진도 없음(주말·과제 수행)
 - ⏳ 이월: `ros_domain` alias 등록 + `humble` alias 수정 (다음 접속 시)
+- ⏳ 이월: 과제 1 인증 캡처 재촬영 (거북이 창과 rqt_graph 창이 겹치지 않게 한 화면에)
 
 - 학습 환경: 랩 지급 노트북 (Lenovo Legion 5, hostname `urindodo-Lenovo-Legion-5-15IMH05H`)
 - 설치된 OS: **Ubuntu 22.04.5 LTS (Jammy Jellyfish)** — Day2에서 20.04 → 22.04 재설치 완료 (ROS 2 Humble 공식 지원 버전)
 - 한/영 입력 전환 정상 작동 확인 (ibus-hangul `initial-input-mode` 설정으로 해결)
-- 2단계(ROS 2) 학습 자료로 **R2R(민형기 강사님, 핑크랩 PinkLAB) 무료 강좌**를 채택, 2026-08-20~09-01
-  2주 일정으로 4단계(입문·응용·심화·실전, 총 137개 필수 강의) 완주 목표 — 세부 체크리스트는
-  [`docs/ros2-r2r-checklist.md`](./docs/ros2-r2r-checklist.md) 참고
+- 2단계(ROS 2) 학습 자료로 **R2R(민형기 강사님, 핑크랩 PinkLAB) 무료 강좌**를 채택. 4단계
+  (입문·응용·심화·실전, 총 137개 필수 강의, 약 25시간 34분) 완주 목표 — **날짜 일정 없이
+  체크박스를 지워나가는 방식**(이유는 체크리스트 상단 참고). 세부 진도는
+  [`docs/ros2-r2r-checklist.md`](./docs/ros2-r2r-checklist.md)
 
 ---
 
