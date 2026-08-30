@@ -25,6 +25,7 @@
 | 8/20 | 9개 (89분) | **9 / 137** | 입문 0~2-2. ROS2 Humble 설치·검증 완료 ✅ |
 | 8/21 | 3개 (23분) | **12 / 137** | 입문 2-3~2-5. bashrc→alias 방식 전환, DDS/ROS_DOMAIN_ID 학습 |
 | 8/24 | 0개 | **12 / 137** | R2R 진도 없음. 연구실 과제 4종 수행 → [Day8 로그](../study-log/2026-08-24-day8-ros2-turtlesim-assignment.md) |
+| 8/26 | 0개 | **12 / 137** | R2R 영상 진도 없음. 2-5 이월 작업(`ros_domain` alias) 완료 + 피지컬 AI 이론 수업 → [Day10 로그](../study-log/2026-08-26-day10-physical-ai-rl-il-vla.md) |
 
 ---
 
@@ -48,12 +49,14 @@
 - [x] 2-2. ROS2 Humble 설치 (14:13) — **설치 완료 + talker/listener + rqt_graph 검증 성공** ✅
 - [x] 2-3. bashrc 설정 (8:02) — PATH·리다이렉션·`source` 개념 정리 완료
 - [x] 2-4. bashrc에서 alias 설정하기 (12:14) — 자동 실행 → alias 호출 방식으로 전환 (`rebash`, `humble` 등록)
-- [x] 2-5. ROS_DOMAIN_ID 설정 (2:54) — DDS 개념 학습 완료. ⚠️ **alias 실제 등록은 아직 안 됨 (아래 참고)**
+- [x] 2-5. ROS_DOMAIN_ID 설정 (2:54) — DDS 개념 학습 + **`ros_domain` alias 실제 등록·검증 완료 (8/26)** ✅
 
 **완료 기준**: `ros2 topic list` 정상 실행, 내 노드가 다른 사람 것과 섞이지 않게 격리됨
 
-> ⏳ **이월 작업**: `ros_domain` alias 등록 + `humble` alias에 `ros_domain;` 추가가 아직 남음.
-> 절차는 `study-log/2026-08-21-day5-bashrc-alias-domain-id.md` §5 참고.
+> ✅ **이월 작업 해소 (2026-08-26)**: `ros_domain` alias 등록 + `humble` alias에 `ros_domain;` 추가 완료.
+> 새 터미널에서 `humble` → `ROS_DOMAIN_ID=13` / `ROS2 humble is activated` 두 줄 출력, `echo $ROS_DOMAIN_ID` → `13` 확인.
+> 과정에서 겪은 문제(`.bashrc` 문법 에러로 터미널이 깨져 `rebash`조차 안 되던 상황)는
+> [`study-log/2026-08-26-day10-physical-ai-rl-il-vla.md`](../study-log/2026-08-26-day10-physical-ai-rl-il-vla.md) §0 참고.
 
 ## 묶음 3 — ROS 2 핵심 개념 (노드·서비스·토픽·액션)
 
