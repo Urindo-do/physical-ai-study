@@ -12,9 +12,13 @@ ROS 2 · 3D 비전 센서(ZED / RealSense) · 로봇 매니퓰레이터 제어(M
 physical-ai-study/
 ├── CLAUDE.md                  ← AI 에이전트용 규칙 문서 (구조·배치·커밋 규칙)
 ├── README.md                  ← 지금 이 파일 (전체 개요 + 진행 상황)
-├── docs/                      ← 진행 중인 학습의 참고 자료·체크리스트
-│   └── ros2-r2r-checklist.md      R2R ROS2 강좌 137개 전체 체크리스트 + 2주 일정
-└── study-log/                 ← 날짜별 학습 기록
+├── .gitattributes             ← 줄바꿈 LF 고정
+├── docs/                      ← [진행축] 진도 관리 체크리스트
+│   └── ros2-r2r-checklist.md      R2R ROS2 강좌 137개 전체 체크리스트 (진도 단일 진실 공급원)
+├── notes/                     ← [지식축] 주제별 개념 정리 (날짜 무관)
+│   └── apqp-robot-mass-production.md
+│                                  로봇 양산 사이클(APQP) 5단계 실무 프로세스
+└── study-log/                 ← [시간축] 날짜별 학습 기록
     ├── images/                               로그에 쓰이는 스크린샷
     ├── 2026-08-18-linux-basics-practice.md   실습 시나리오 (직접 따라 치는 용)
     ├── 2026-08-18-day1-log.md                1일차: 리눅스 환경 진단 + 기초 명령어
@@ -23,11 +27,21 @@ physical-ai-study/
     ├── 2026-08-20-day4-ros2-intro-install.md 4일차: R2R 입문 착수 + ROS 2 Humble 설치 ✅
     ├── 2026-08-21-day5-bashrc-alias-domain-id.md
     │                                         5일차: bashrc·alias 환경 설계, DDS·ROS_DOMAIN_ID
-    └── 2026-08-24-day8-ros2-turtlesim-assignment.md
-                                              8일차: 연구실 과제 — turtlesim·토픽·서비스 CLI 실습
+    ├── 2026-08-24-day8-ros2-turtlesim-assignment.md
+    │                                         8일차: 연구실 과제 — turtlesim·토픽·서비스 CLI 실습
+    └── 2026-08-26-day10-physical-ai-rl-il-vla.md
+                                              10일차: 피지컬 AI 개론 — 강화학습·모방학습·VLA
 ```
 
-새 학습 기록은 `study-log/YYYY-MM-DD-주제.md` 형식으로 계속 추가한다.
+문서는 성격에 따라 세 축으로 나눠 넣는다.
+
+| 폴더 | 축 | 담는 것 | 찾을 때 |
+|---|---|---|---|
+| `study-log/` | 시간축 | 날짜별 학습 기록 (`YYYY-MM-DD-주제.md`) | "그때 뭐 했더라" |
+| `docs/` | 진행축 | 진도 체크리스트·계획 | "어디까지 했더라" |
+| `notes/` | 지식축 | 주제별 개념 정리 (파일명에 날짜 없음) | "그거 뭐였더라" |
+
+배치·커밋 규칙 상세는 [`CLAUDE.md`](./CLAUDE.md) §3 참고.
 
 ---
 
@@ -40,6 +54,7 @@ physical-ai-study/
 | 3 | 3D 비전 센서 (ZED 2i / RealSense) | 예정 |
 | 4 | 로봇 매니퓰레이터 제어 (MoveIt) | 예정 |
 | 5 | 시뮬레이션 (Gazebo) | 예정 |
+| — | (병행) 로봇 개발 실무 프로세스 이해 — APQP 양산 사이클 | ✅ 1차 정리 |
 
 ---
 
@@ -56,15 +71,24 @@ physical-ai-study/
 
 ---
 
-## 진행 상황 요약 (2026-08-24 기준)
+## 진행 상황 요약 (2026-08-30 기준)
 
 - ✅ **ROS 2 Humble 설치 완료** (2026-08-20) — talker/listener 통신 및 `rqt_graph`로 검증
 - ✅ ROS 2 환경을 `.bashrc` 자동 실행이 아닌 **alias 호출 방식**으로 전환 (환경 충돌 방지)
 - ✅ **연구실 과제 4종 수행 완료** (2026-08-24) — turtlesim 실행, 토픽 Pub/Sub, `topic pub`으로
   원형 궤적, `service call /spawn`으로 거북이 소환. 토픽(N:M 방송)과 서비스(1:1 요청-응답)의
   차이를 실물로 확인 → [Day8 로그](./study-log/2026-08-24-day8-ros2-turtlesim-assignment.md)
-- R2R 입문과정 12/35 진행 중 (전체 **12/137**) — 8/22~8/24는 R2R 진도 없음(주말·과제 수행)
-- ⏳ 이월: `ros_domain` alias 등록 + `humble` alias 수정 (다음 접속 시)
+- ✅ **`ros_domain` alias 등록 완료** (2026-08-26) — Day5부터의 이월 작업 해소.
+  새 터미널에서 `humble` 한 번으로 ROS 2 환경 + `ROS_DOMAIN_ID=13` 동시 적용 확인
+- ✅ **피지컬 AI 이론 수업 정리** (2026-08-26) — 강화학습 → 모방학습(BC·DAgger·ACT·Diffusion Policy)
+  → VLA(RT 계열·OpenVLA·π0·GR00T) 계보. 논문 원문 대조로 필기 6건 정정
+  → [Day10 로그](./study-log/2026-08-26-day10-physical-ai-rl-il-vla.md)
+- ✅ **로봇 양산 사이클(APQP) 정리** (2026-08-30) — 기획 → 개발설계 → Proto → Pilot → 양산
+  5단계와 게이트 심의 구조. ROS 2 학습 내용이 실무 문서(ICD·DFMEA·Fail-Safe 명세)의 어디에
+  대응하는지 매핑표 작성. 공개 사양 대조로 필기 정정 3건
+  → [APQP 노트](./notes/apqp-robot-mass-production.md) — `notes/` 축을 이때 신설
+- R2R 입문과정 12/35 진행 중 (전체 **12/137**) — 8/22~8/26은 R2R 영상 진도 없음
+  (주말·연구실 과제·이론 수업). 다음은 묶음 3(3-1 Turtlesim ~ 3-9 Action)
 - ⏳ 이월: 과제 1 인증 캡처 재촬영 (거북이 창과 rqt_graph 창이 겹치지 않게 한 화면에)
 
 - 학습 환경: 랩 지급 노트북 (Lenovo Legion 5, hostname `urindodo-Lenovo-Legion-5-15IMH05H`)
