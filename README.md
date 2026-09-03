@@ -13,8 +13,9 @@ physical-ai-study/
 ├── CLAUDE.md                  ← AI 에이전트용 규칙 문서 (구조·배치·커밋 규칙)
 ├── README.md                  ← 지금 이 파일 (전체 개요 + 진행 상황)
 ├── .gitattributes             ← 줄바꿈 LF 고정
-├── docs/                      ← [진행축] 진도 관리 체크리스트
-│   └── ros2-r2r-checklist.md      R2R ROS2 강좌 137개 전체 체크리스트 (진도 단일 진실 공급원)
+├── docs/                      ← [진행축] 진도 체크리스트 · 현재 환경 상태
+│   ├── ros2-r2r-checklist.md      R2R ROS2 강좌 137개 전체 체크리스트 (진도 단일 진실 공급원)
+│   └── environment.md             현재 환경 단일 진실 공급원 (alias · 패키지 · 카메라 사양)
 ├── notes/                     ← [지식축] 주제별 개념 정리 (날짜 무관)
 │   ├── apqp-robot-mass-production.md
 │   │                              로봇 양산 사이클(APQP) 5단계 실무 프로세스
@@ -39,7 +40,7 @@ physical-ai-study/
 | 폴더 | 축 | 담는 것 | 찾을 때 |
 |---|---|---|---|
 | `study-log/` | 시간축 | 날짜별 학습 기록 (`YYYY-MM-DD-주제.md`) | "그때 뭐 했더라" |
-| `docs/` | 진행축 | 진도 체크리스트·계획 | "어디까지 했더라" |
+| `docs/` | 진행축 | 진도 체크리스트 · **현재 환경 상태** | "어디까지 했더라" / "지금 뭐가 깔려 있더라" |
 | `notes/` | 지식축 | 주제별 개념 정리 (파일명에 날짜 없음) | "그거 뭐였더라" |
 | `assignments/` | 과제축 | 연구실 과제와 결과물 (폴더명에 날짜 없음) | "그 과제 어떻게 했더라" |
 
@@ -99,6 +100,9 @@ physical-ai-study/
 - R2R 입문과정 12/35 진행 중 (전체 **12/137**) — 8/22 이후 R2R 영상 진도 없음
   (연구실 과제·이론 수업 우선). 다음은 묶음 3(3-1 Turtlesim ~ 3-9 Action)
 - ⏳ 이월: 과제 1 인증 캡처 재촬영 (거북이 창과 rqt_graph 창이 겹치지 않게 한 화면에)
+
+> 💻 **환경 정보(alias · 설치 패키지 · 카메라 토픽 · 워크스페이스)는 [`docs/environment.md`](./docs/environment.md)에 모아뒀다.**
+> 로그에 적힌 값은 그때의 스냅샷이고, **현재값은 항상 그 문서가 기준**이다.
 
 - 학습 환경: 랩 지급 노트북 (Lenovo Legion 5, hostname `urindodo-Lenovo-Legion-5-15IMH05H`)
 - 설치된 OS: **Ubuntu 22.04.5 LTS (Jammy Jellyfish)** — Day2에서 20.04 → 22.04 재설치 완료 (ROS 2 Humble 공식 지원 버전)
