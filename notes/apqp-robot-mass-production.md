@@ -960,4 +960,4 @@ BOM은 구매팀과의 계약, 2D 도면은 가공 협력사와의 계약, SOP�
 - 교안: 「현직자가 알려주는 로봇 실무 개발 프로세스 — 로봇 양산 사이클」 01~14편 + 「로봇 개발 직무별 수강 추천 학부강의」
 - [Unitree Go2 공식 제품 페이지](https://www.unitree.com/go2/)
 - [Unitree GO2 모델 변형별 사양 (QRE Docs)](https://www.docs.quadruped.de/projects/go2/html/Overview_1.html)
-- 관련 저장소 문서: [Day10 로그 — 피지컬 AI 개론(RL·IL·VLA)](../study-log/2026-08-26-day10-physical-ai-rl-il-vla.md), [R2R 체크리스트](../docs/ros2-r2r-checklist.md)
+- 관련 저장소 문서: [피지컬 AI 개론 노트 — RL·모방학습·VLA](./physical-ai-rl-il-vla.md), [R2R 체크리스트](../docs/ros2-r2r-checklist.md)

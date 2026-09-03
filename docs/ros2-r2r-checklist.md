@@ -24,8 +24,8 @@
 |---|---|---|---|
 | 8/20 | 9개 (89분) | **9 / 137** | 입문 0~2-2. ROS2 Humble 설치·검증 완료 ✅ |
 | 8/21 | 3개 (23분) | **12 / 137** | 입문 2-3~2-5. bashrc→alias 방식 전환, DDS/ROS_DOMAIN_ID 학습 |
-| 8/24 | 0개 | **12 / 137** | R2R 진도 없음. 연구실 과제 4종 수행 → [Day8 로그](../study-log/2026-08-24-day8-ros2-turtlesim-assignment.md) |
-| 8/26 | 0개 | **12 / 137** | R2R 영상 진도 없음. 2-5 이월 작업(`ros_domain` alias) 완료 + 피지컬 AI 이론 수업 → [Day10 로그](../study-log/2026-08-26-day10-physical-ai-rl-il-vla.md) |
+| 8/24 | 0개 | **12 / 137** | R2R 진도 없음. 연구실 과제 4종 수행 → [과제 기록](../assignments/ros2-basics-turtlesim/practice-log.md) |
+| 8/26 | 0개 | **12 / 137** | R2R 영상 진도 없음. 2-5 이월 작업(`ros_domain` alias) 완료 + 피지컬 AI 이론 수업 → [피지컬 AI 노트](../notes/physical-ai-rl-il-vla.md) |
 
 ---
 
@@ -56,7 +56,7 @@
 > ✅ **이월 작업 해소 (2026-08-26)**: `ros_domain` alias 등록 + `humble` alias에 `ros_domain;` 추가 완료.
 > 새 터미널에서 `humble` → `ROS_DOMAIN_ID=13` / `ROS2 humble is activated` 두 줄 출력, `echo $ROS_DOMAIN_ID` → `13` 확인.
 > 과정에서 겪은 문제(`.bashrc` 문법 에러로 터미널이 깨져 `rebash`조차 안 되던 상황)는
-> [`study-log/2026-08-26-day10-physical-ai-rl-il-vla.md`](../study-log/2026-08-26-day10-physical-ai-rl-il-vla.md) §0 참고.
+> [`notes/physical-ai-rl-il-vla.md`](../notes/physical-ai-rl-il-vla.md) §0 참고.
 
 ## 묶음 3 — ROS 2 핵심 개념 (노드·서비스·토픽·액션)
 
@@ -64,7 +64,7 @@
 > `ros2 topic pub`으로 원형 궤적, `ros2 service call /spawn`으로 거북이 소환까지 직접 해봤다.
 > **다만 강의 영상은 아직 보지 않았으므로 체크는 하지 않는다.** 영상 시청 시
 > "이미 눈으로 본 그 동작이 왜 그렇게 되는지"를 채우는 복습 성격이 된다.
-> 기록: [`study-log/2026-08-24-day8-ros2-turtlesim-assignment.md`](../study-log/2026-08-24-day8-ros2-turtlesim-assignment.md)
+> 기록: [`assignments/ros2-basics-turtlesim/practice-log.md`](../assignments/ros2-basics-turtlesim/practice-log.md)
 
 - [ ] 3-1. Turtlesim 실행하기 (8:13)
 - [ ] 3-2. 다시 강조하는 setup.bash (2:43)
