@@ -4,7 +4,7 @@
 > 시간이 지나 달라졌을 수 있다. 값이 서로 다르면 **항상 이 문서가 이긴다.**
 > (`CLAUDE.md` §3-2 참고)
 
-- 마지막 갱신: **2026-09-22**
+- 마지막 갱신: **2026-09-29**
 - 출처: **2026-09-22에 리눅스 노트북에서 아래 "확인 명령"을 실제로 실행해 대조한 값.**
   예외는 §5 카메라 — 그때 D435i가 연결돼 있지 않아 apt로 확인되는 버전 두 개만 재확인했다.
 
@@ -172,6 +172,11 @@ ros2 launch realsense2_camera rs_launch.py align_depth.enable:=true pointcloud.e
 | `python3-pip` | apt | 22.0.2 | Python 패키지 설치 |
 | `jupyter` / `jupyterlab` / `notebook` | **pip3 (사용자 설치)** | 1.1.1 / 4.6.3 / 7.6.2 | Python 노트북 |
 
+> **한글 입력 설정**: `~/.config/environment.d/90-ibus.conf`에 `GTK_IM_MODULE=ibus`·`QT_IM_MODULE=ibus`·
+> `XMODIFIERS=@im=ibus`를 지정해 두었다 (2026-09-29). snap판 VS Code 터미널에서 한글이 안 쳐지던 문제 대응.
+> 로그인할 때 적용된다. 확인: `systemctl --user show-environment | grep IM_MODULE` → `GTK_IM_MODULE=ibus`가 보여야 함.
+> 이 설정으로도 안 되면 VS Code를 snap판 대신 `.deb`판으로 바꿔 설치하는 것이 다음 대안이다 (sudo 필요, 미실행).
+
 > `jupyter`는 apt가 아니라 pip3로 **사용자 홈에** 깔려 있다 (`~/.local/bin/jupyter`).
 > `.bashrc`의 `export PATH="$HOME/.local/bin:$PATH"` 가 있어야 명령이 잡히는 이유가 이것이다.
 
@@ -220,6 +225,7 @@ bash -n ~/.bashrc        # 문법 검사 (조용하면 정상)
 
 | 날짜 | 내용 |
 |---|---|
+| 2026-09-29 | §6 — 한글 입력용 `~/.config/environment.d/90-ibus.conf` 추가 (snap판 VS Code에서 한글 입력 불가 대응). 재로그인 후 적용 여부는 미확인 |
 | 2026-09-22 | §2~§6 전체를 리눅스 노트북에서 **실측 대조**. §4 등록 노드 3개→**7개**로 정정, §3 alias를 `.bashrc` 원문으로 교체(+`export PATH` 3중 중복 발견), §6에 실측 버전·`librealsense2`·`cv-bridge` 추가, §5는 카메라 미연결로 재확인 못 했음을 명시 |
 | 2026-09-22 | §1 기기 — 작업 환경을 리눅스 노트북 단일 기기로 전환(실습·문서·git 전부). 저장소 위치 `~/physical-ai-study`와 작업 방식(VS Code) 행 추가 |
 | 2026-09-03 | 최초 작성. 저장소에 흩어져 있던 환경 정보를 모음. `alias humble` 정의가 문서마다 4가지 버전으로 존재해 어느 게 현재값인지 알 수 없던 문제를 해결하려고 만듦 |
