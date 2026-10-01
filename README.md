@@ -19,7 +19,9 @@ physical-ai-study/
 ├── notes/                     ← [지식축] 주제별 개념 정리 (날짜 무관)
 │   ├── apqp-robot-mass-production.md
 │   │                              로봇 양산 사이클(APQP) 5단계 실무 프로세스
-│   └── physical-ai-rl-il-vla.md   강화학습 · 모방학습 · VLA 계보 (π0 · GR00T)
+│   ├── physical-ai-rl-il-vla.md   강화학습 · 모방학습 · VLA 계보 (π0 · GR00T)
+│   └── isaac-sim-ur-humble-setup.md
+│                                  Isaac Sim 6.1 + ROS 2 Humble로 UR 구동 (수업 자료 → 내 환경 대응)
 ├── assignments/               ← [과제축] 연구실(SIBL) 과제와 수행 결과물
 │   ├── README.md                  과제 목록 인덱스
 │   ├── ros2-basics-turtlesim/     ROS 2 기초 실습 (turtlesim · 토픽 · 서비스)
