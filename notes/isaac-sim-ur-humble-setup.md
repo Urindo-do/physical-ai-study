@@ -82,7 +82,7 @@
 ┌─ 터미널 A: Isaac Sim ──────────────┐        ┌─ 터미널 B, C…: ROS ───────────────┐
 │ humble 치지 않는다 ❌                │        │ humble  (ROS 켜기 + DOMAIN_ID=13) │
 │ ROS_DOMAIN_ID=13 만 설정            │ ◀────▶ │ isaac_ws (워크스페이스 source)     │
-│ ~/isaacsim/isaac-sim.sh            │ 토픽   │ ros2 launch …                     │
+│ ~/isaacsim-6.1.0/isaac-sim.sh      │ 토픽   │ ros2 launch …                     │
 │ (내장 Humble · Python 3.12)         │        │ (시스템 Humble · Python 3.10)      │
 └────────────────────────────────────┘        └───────────────────────────────────┘
            두 쪽의 ROS_DOMAIN_ID가 같아야 서로 보인다
@@ -102,8 +102,8 @@
 
 | 단계 | 내용 | 슬라이드 | 상태 |
 |---|---|---|---|
-| A | Isaac Sim 6.1 압축 해제 + `post_install.sh` | 30~31 | ⬜ (설치 위치 미확인) |
-| B | **첫 실행 판정** (빈 장면이 뜨는가) | — | ⬜ **관문** |
+| A | Isaac Sim 6.1 압축 해제 + `post_install.sh` | 30~31 | ✅ (`~/isaacsim-6.1.0`, 2026-10-01 확인) |
+| B | **첫 실행 판정** (빈 장면이 뜨는가) | — | ✅ **통과** (2026-10-01, §4-B 결과) |
 | C | ROS 패키지 설치 (MoveIt·UR·topic_based_ros2_control) | 26 | ⬜ |
 | D | 공식 ROS 워크스페이스 빌드 (`isaac_moveit`) | 26 | ⬜ |
 | E | alias 2개 추가 (`isaac_ws`, `isaacsim`) | 26·28 대체 | ⬜ |
@@ -135,8 +135,21 @@ cd ~/isaacsim
 - 윈도우와 비교: 슬라이드의 `isaac-sim.selector.bat`(App Selector)는 5.1에서 이미 **Deprecated**라고 표시되어 있다
   (슬라이드 32 창 제목). 리눅스에선 `isaac-sim.sh`를 직접 실행한다.
 
-> ⚠️ 이미 다른 위치에 풀었다면 그 경로를 쓰고, 아래 alias의 `~/isaacsim`을 그 경로로 바꾼다.
-> 확인: `ls ~/isaacsim/isaac-sim.sh 2>/dev/null || find ~ -maxdepth 3 -name isaac-sim.sh 2>/dev/null`
+> ✅ **내 노트북 실제 설치 위치: `~/isaacsim-6.1.0`** (2026-10-01 폴더 목록으로 확인)
+> 공식 예시(`~/isaacsim`)와 이름이 다르다. **이 문서의 이후 명령은 전부 `~/isaacsim-6.1.0` 기준**이다.
+>
+> | 확인 항목 | 결과 | 근거 |
+> |---|---|---|
+> | 압축 해제 | ✅ 완료 | `isaac-sim.sh`, `kit/`, `exts/` 등 존재 |
+> | `post_install.sh` | ✅ 실행됨 (적어도 링크 단계) | 스크립트가 만드는 `extension_examples` 심볼릭 링크가 있음 |
+> | 버전 | `6.1.0-rc.26+release.49347.2d230af4.gl` | `cat ~/isaacsim-6.1.0/VERSION` |
+> | 원본 zip | `~/Downloads/isaac-sim-standalone-6.1.0-linux-x86_64.zip` (약 13.3 GB) | 설치가 끝났으므로 나중에 지워도 됨 (재설치용으로 남길지 결정) |
+>
+> **런처가 ROS를 어떻게 고르는지 (스크립트 원문으로 확인 ✅)**: `isaac-sim.sh`는 실행 전에 `setup_ros_env.sh`를 부른다.
+> 이 스크립트는 `ROS_DISTRO`가 **비어 있을 때만** Ubuntu 22.04면 `humble`을 골라
+> `exts/isaacsim.ros2.core/humble/lib`를 `LD_LIBRARY_PATH`에 붙이고, `RMW_IMPLEMENTATION`이 없으면
+> `rmw_fastrtps_cpp`로 정한다. → §2의 "Isaac Sim 터미널에서는 `humble`을 치지 않는다"가 바로 이 조건이다.
+> (`--no-ros-env` 인자를 주면 이 자동 설정을 건너뛴다.)
 
 ### B. 첫 실행 판정 — 관문
 
@@ -145,7 +158,7 @@ cd ~/isaacsim
 ```bash
 powerprofilesctl set performance        # CPU 절전 모드 해제 (충전기 연결 상태에서)
 nvidia-smi                              # 다른 프로그램이 VRAM을 쓰고 있나 확인 (크롬 등은 닫기)
-~/isaacsim/isaac-sim.sh --/app/content/emptyStageOnStart=true
+~/isaacsim-6.1.0/isaac-sim.sh --/app/content/emptyStageOnStart=true
 ```
 
 - `--/app/content/emptyStageOnStart=true`: 시작할 때 기본 장면 대신 **빈 장면**으로 열어 VRAM을 아낀다
@@ -162,8 +175,24 @@ nvidia-smi                              # 다른 프로그램이 VRAM을 쓰고 
 | 그 외 에러 | 원인 불명 | 로그 전문 확보 후 분석 |
 
 로그 위치: ⚠️ 미확인 — 터미널 출력을 그대로 저장해두면 된다:
-`~/isaacsim/isaac-sim.sh --/app/content/emptyStageOnStart=true 2>&1 | tee ~/isaac_first_run.log`
+`~/isaacsim-6.1.0/isaac-sim.sh --/app/content/emptyStageOnStart=true 2>&1 | tee ~/isaac_first_run.log`
 (`2>&1`: 에러 출력도 일반 출력에 합친다 / `tee`: 화면에도 보여주고 파일에도 저장한다)
+
+**2026-10-01 첫 실행 결과 — ✅ 통과 (빈 장면 기준)**
+
+| 항목 | 관측값 | 출처 |
+|---|---|---|
+| 준비 완료까지 | 약 **6분 24초** (`[384.001s] app ready`) | 실행 터미널 로그 |
+| 중간 "응답 없음" 창 | 여러 번 뜸 → **Wait**으로 넘김 (셰이더·캐시 준비 중 정상) | 화면 |
+| 뷰포트 | 그리드 렌더링, **FPS ≈ 110** (Frame time 9.09 ms) | 뷰포트 우상단 오버레이 |
+| GPU 선택 | `kit` 프로세스가 **RTX 2060에서 C+G**로 실행 (하이브리드 그래픽이지만 NVIDIA를 씀) | `nvidia-smi` Processes |
+| VRAM (빈 장면) | Isaac Sim 자체 **595.8 MiB**, GPU 전체 **902 MiB / 6144 MiB** | 오버레이 / `nvidia-smi --query-gpu` |
+| ROS 2 | `Could not import system rclpy` → `Attempting to load internal rclpy for ROS Distro: humble` → `rclpy loaded`, `isaacsim.ros2.bridge-5.1.4` startup | 실행 터미널 로그 |
+
+- ROS 로그가 §2 설계 그대로다: 시스템 Humble을 source하지 않았으니 **내장 Humble rclpy**를 불러왔다.
+- 같은 6.44 GB GPU의 Windows 사례(시작 직후 crash)와 달리 **리눅스에서는 빈 장면이 정상 렌더링**됐다.
+  다만 로봇·센서를 올리면 VRAM이 늘어난다 → G(Franka)에서 다시 잰다.
+- 실측 당시 **배터리 20%** 상태였다. 노트북 GPU는 배터리에서 전력이 제한되므로(이때 35 W 상한), 실습은 **충전기 연결**이 기본.
 
 ### C. ROS 패키지 설치 (ROS 터미널)
 
@@ -236,7 +265,7 @@ ls src/moveit/isaac_moveit/launch                                               
 
 ```bash
 alias isaac_ws='source ~/IsaacSim-ros_workspaces/humble_ws/install/local_setup.bash; echo "isaac_ws is sourced!"'
-alias isaacsim='if [ -n "$ROS_DISTRO" ]; then echo "[isaacsim] ROS가 켜진 터미널이다. 새 터미널에서 실행할 것"; else (export ROS_DOMAIN_ID=13; ~/isaacsim/isaac-sim.sh); fi'
+alias isaacsim='if [ -n "$ROS_DISTRO" ]; then echo "[isaacsim] ROS가 켜진 터미널이다. 새 터미널에서 실행할 것"; else (export ROS_DOMAIN_ID=13; ~/isaacsim-6.1.0/isaac-sim.sh); fi'
 ```
 
 - `isaac_ws`: `sws`와 같은 역할. **`humble`을 먼저 친 뒤에** 쓴다(공식 문서도 `/opt/ros/humble/setup.bash` → `local_setup.bash` 순서).
@@ -400,8 +429,8 @@ ros2 launch ur_moveit_config ur_moveit.launch.py ur_type:=ur3 launch_rviz:=true
 
 ## 7. 미확인 목록 (해보면서 채운다)
 
-- [ ] 이 노트북에서 Isaac Sim 6.1이 뜨는가 (B) — **가장 큰 위험**
-- [ ] Isaac Sim 설치 경로 (`~/isaacsim`인가)
+- [x] 이 노트북에서 Isaac Sim 6.1이 뜨는가 (B) → **빈 장면은 뜸** (2026-10-01). 로봇·센서를 올렸을 때 VRAM은 아직 미확인
+- [x] Isaac Sim 설치 경로 → `~/isaacsim-6.1.0` (2026-10-01)
 - [ ] Humble판 `ur_control.launch.py`가 `use_mock_hardware`를 받는가
 - [ ] 슬라이드 43의 Subscribe Joint State `topicName` 값
 - [ ] 6.1에서 Publish Joint State `targetPrim` 방식이 그대로 동작하는가
