@@ -4,7 +4,7 @@
 > 시간이 지나 달라졌을 수 있다. 값이 서로 다르면 **항상 이 문서가 이긴다.**
 > (`CLAUDE.md` §3-2 참고)
 
-- 마지막 갱신: **2026-09-29**
+- 마지막 갱신: **2026-10-03**
 - 출처: **2026-09-22에 리눅스 노트북에서 아래 "확인 명령"을 실제로 실행해 대조한 값.**
   예외는 §5 카메라 — 그때 D435i가 연결돼 있지 않아 apt로 확인되는 버전 두 개만 재확인했다.
 
@@ -18,7 +18,7 @@
 | hostname | `urindodo-Lenovo-Legion-5-15IMH05H` | `hostname` |
 | OS | **Ubuntu 22.04.5 LTS (Jammy Jellyfish)** | `lsb_release -a` |
 | 윈도우 PC | **이 저장소 작업에 쓰지 않음** (2026-09-22부터) | — |
-| 보유 하드웨어 | Raspberry Pi 5 (사용 경험 있음), Intel RealSense D435i | — |
+| 보유 하드웨어 | Raspberry Pi 5 (사용 경험 있음), Intel RealSense D435i, **DH-Robotics AG-95 그리퍼 + USB 변환기** (§5-2) | — |
 | 저장소 위치 | `~/physical-ai-study` (리눅스 노트북) | `git -C ~/physical-ai-study remote -v` |
 | 작업 방식 | 리눅스 노트북 **VS Code**에서 실습·문서·git 전부 | — |
 
@@ -113,6 +113,18 @@ export PATH="$HOME/.local/bin:$PATH"
 
 확인: `ros2 pkg list | grep vision_pkg`, `ros2 pkg executables vision_pkg`
 
+**연구실 코드 워크스페이스** — 모종 이식 과제용 (이 저장소 밖, 내가 만든 게 아니라 받은 코드)
+
+| 항목 | 값 |
+|---|---|
+| 저장소 | `~/Desktop/TransplantingRobot` (git remote 없음) |
+| 워크스페이스 | `~/Desktop/TransplantingRobot/ros2_ws` — 패키지 10개 (`transplant_bringup` · `_description` · `_gripper` · `_interfaces` · `_motion` · `_pose` · `_scene` · `_task` · `_vision` · `_web`) |
+| 빌드 | `cd ~/Desktop/TransplantingRobot/ros2_ws && source /opt/ros/humble/setup.bash && colcon build` (2026-09-30: `10 packages finished [17.7s]`) |
+| 소싱 | `source scripts/env.sh` (저장소 최상위에서) |
+| conda | **안 씀** — 시스템 Python 3.10 기준 Humble과 섞이면 `rclpy` 오류 (이 PC엔 conda 미설치) |
+
+확인: `ls ~/Desktop/TransplantingRobot/ros2_ws/src`
+
 ## 5. 카메라 (Intel RealSense D435i)
 
 > ⚠️ **2026-09-22 실측 시 카메라가 연결돼 있지 않았다** (`lsusb`에 D435i 없음. Intel 항목은
@@ -154,6 +166,20 @@ ros2 launch realsense2_camera rs_launch.py align_depth.enable:=true pointcloud.e
 
 확인: `ros2 topic list -t`, `ros2 node list`, `lsusb | grep -i intel`
 
+### 5-2. 그리퍼 (DH-Robotics AG-95 + USB 프로토콜 변환기)
+
+> 2026-10-03 확인 시점엔 **연결돼 있지 않았다** (`/dev/ttyACM0` 없음). 아래는 2026-09-30 ~ 10-01 연결 때 값.
+> 다루는 법은 [`notes/ag95-gripper.md`](../notes/ag95-gripper.md).
+
+| 항목 | 값 | 확인 명령 |
+|---|---|---|
+| USB 장치 | `0483:5740` STM32 Virtual ComPort (`cdc_acm`), 시리얼 `00000000050C` | `lsusb` |
+| 장치 파일 | `/dev/ttyACM0` (고정 경로 `/dev/serial/by-id/usb-STMicroelectronics_STM32_Virtual_ComPort_in_FS_Mode_00000000050C-if00`) | `ls -l /dev/serial/by-id` |
+| 통신 | 115200 bps 8N1, 그리퍼 ID `2`, DH 자체 프레임 (Modbus 아님) | — |
+| 변환기 DIP | `1000` (USB 모드) | 육안 |
+| 전원 | 24 V 별도 공급 필요 — **없으면 USB 장치로도 안 잡힌다** | `lsusb` |
+| 권한 | 내 계정이 `dialout` 그룹 ✅ (2026-10-03) | `groups` |
+
 ## 6. 설치된 주요 패키지
 
 버전은 2026-09-22에 `dpkg -l` / `snap list` / `pip3 list`로 실측한 값이다.
@@ -171,6 +197,12 @@ ros2 launch realsense2_camera rs_launch.py align_depth.enable:=true pointcloud.e
 | Chrome | `.deb` 직접 설치 | 152.0.7977.64-1 | 브라우저 |
 | `python3-pip` | apt | 22.0.2 | Python 패키지 설치 |
 | `jupyter` / `jupyterlab` / `notebook` | **pip3 (사용자 설치)** | 1.1.1 / 4.6.3 / 7.6.2 | Python 노트북 |
+| `ros-humble-ur-robot-driver` | apt (2026-09-30) | 2.14.0-1jammy.20260908 | UR 로봇 드라이버 (연구실 코드 의존성) |
+| `ros-humble-ur-description` | apt (2026-09-30) | 2.13.0-1jammy.20260908 | UR 로봇 모델(URDF) |
+| `ros-humble-controller-manager` | apt (2026-09-30) | 2.54.2-1jammy.20260908 | ros2_control 컨트롤러 관리 |
+| `ros-humble-joint-state-publisher-gui` | apt (2026-09-30) | 2.4.0-1jammy.20260907 | 관절 슬라이더 GUI |
+| `python3-serial` (pyserial) | apt (2026-09-30) | 3.5-1 | 그리퍼 시리얼 통신 |
+| `python3-rosdep` | apt (2026-09-30) | 0.27.0-1 | ROS 의존성 확인 도구 |
 
 > **한글 입력 설정**: `~/.config/environment.d/90-ibus.conf`에 `GTK_IM_MODULE=ibus`·`QT_IM_MODULE=ibus`·
 > `XMODIFIERS=@im=ibus`를 지정해 두었다 (2026-09-29). snap판 VS Code 터미널에서 한글이 안 쳐지던 문제 대응.
@@ -225,6 +257,7 @@ bash -n ~/.bashrc        # 문법 검사 (조용하면 정상)
 
 | 날짜 | 내용 |
 |---|---|
+| 2026-10-03 | §1 보유 하드웨어에 AG-95 추가, §4 연구실 코드 워크스페이스(`TransplantingRobot/ros2_ws`), §5-2 그리퍼 신설, §6 apt 6개(2026-09-30 설치) — 버전은 `dpkg -l`, `dialout`은 `groups`로 실측 |
 | 2026-09-29 | §6 — 한글 입력용 `~/.config/environment.d/90-ibus.conf` 추가 (snap판 VS Code에서 한글 입력 불가 대응). 재로그인 후 적용 여부는 미확인 |
 | 2026-09-22 | §2~§6 전체를 리눅스 노트북에서 **실측 대조**. §4 등록 노드 3개→**7개**로 정정, §3 alias를 `.bashrc` 원문으로 교체(+`export PATH` 3중 중복 발견), §6에 실측 버전·`librealsense2`·`cv-bridge` 추가, §5는 카메라 미연결로 재확인 못 했음을 명시 |
 | 2026-09-22 | §1 기기 — 작업 환경을 리눅스 노트북 단일 기기로 전환(실습·문서·git 전부). 저장소 위치 `~/physical-ai-study`와 작업 방식(VS Code) 행 추가 |
